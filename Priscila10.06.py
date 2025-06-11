@@ -34,5 +34,5 @@
 
 #2.com lista
 animais=["gato","cachorro","pássaro","tigre"]
-for i in "animais":
-    print("animais:")
+for animal in animais:
+    print(f"animal: {animal}")
