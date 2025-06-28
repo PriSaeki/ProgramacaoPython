@@ -1,0 +1,34 @@
+import sqlite3
+
+
+conn  = sqlite3.connect('nome.db')
+c = conn.cursor()
+
+c.execute('''
+    CREATE TABLE IF NOT EXISTS pessoas(
+       id INTEGER NOT NULL PRIMARY KEY,
+       nome TEXT NOT NULL,   
+       cidade TEXT NOT NULL          
+    )
+''')
+
+
+nome = input('Digite um nome: ')
+cidade = input('Digite a cidade: ')
+
+c.execute('''
+  INSERT INTO pessoas(nome, cidade)
+         VALUES  (?,?)
+''', (nome, cidade))
+
+
+conn.commit()
+
+c.execute('SELECT * FROM pessoas')
+pessoas = c.fetchall()
+
+for pessoa in pessoas:
+        print(f'ID {pessoa[0]},NOME {pessoa[1]},{pessoa[2]}')
+
+conn.close()
+
